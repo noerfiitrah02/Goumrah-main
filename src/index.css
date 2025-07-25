@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .text-primary {
+    color: #3caf4a;
+  }
+  .bg-gradient {
+    background: linear-gradient(
+      to right,
+      #3caf4a 0%,
+      #3caf4a 70%,
+      #92c64e 100%
+    );
+  }
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, #3caf4a 0%, #3caf4a 70%, #92c64e 100%);
+  }
+
+  .bg-primary {
+    background-color: #3caf4a;
+  }
+  .bg-seconndary {
+    background-color: #92c64e;
+  }
+}
+
+.my-swiper .swiper-pagination-bullet {
+  background-color: #ccc; /* Warna default */
+  opacity: 1;
+}
+
+.my-swiper .swiper-pagination-bullet-active {
+  background-color: #3caf4a; /* Warna aktif */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
