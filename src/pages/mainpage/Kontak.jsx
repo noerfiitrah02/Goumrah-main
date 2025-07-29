@@ -385,50 +385,6 @@ export const Kontak = () => {
           ></iframe>
         </motion.div>
 
-        {/* Business Hours */}
-        <motion.div
-          className="mb-12 rounded-lg border border-green-100 bg-white p-8 shadow-lg"
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <h3 className="mb-6 flex items-center justify-center text-center text-2xl font-semibold text-gray-900">
-            <FaClock className="mr-3 text-green-600" />
-            Jam Operasional
-          </h3>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div>
-              <h4 className="mb-3 font-semibold text-gray-900">Kantor Pusat</h4>
-              <p className="leading-relaxed text-gray-700">
-                <strong>Senin - Jumat:</strong> 08:00 - 17:00 WIB
-                <br />
-                <strong>Sabtu:</strong> 09:00 - 13:00 WIB
-                <br />
-                <strong>Minggu & Hari Libur:</strong> Tutup
-              </p>
-            </div>
-            <div>
-              <h4 className="mb-3 font-semibold text-gray-900">
-                Customer Service
-              </h4>
-              <p className="leading-relaxed text-gray-700">
-                <strong>WhatsApp:</strong> 24/7
-                <br />
-                <strong>Email:</strong> 24/7 (respon kurang dari 2 jam)
-                <br />
-                <strong>Telepon:</strong> Senin - Jumat 08:00 - 17:00
-              </p>
-            </div>
-          </div>
-          <div className="mt-6 rounded-lg bg-green-50 p-4">
-            <p className="text-sm text-green-800">
-              <strong>Khusus Musim Haji:</strong> Tim customer service akan
-              beroperasi 24/7 untuk melayani jamaah yang sedang melaksanakan
-              ibadah haji.
-            </p>
-          </div>
-        </motion.div>
-
         {/* FAQ */}
         <motion.div
           className="mb-12 rounded-lg border border-green-100 bg-white p-8 shadow-lg"

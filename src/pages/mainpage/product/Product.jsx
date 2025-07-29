@@ -194,7 +194,7 @@ const Product = () => {
 
           {/* Category */}
           <div>
-            <h3 className="mb-2 font-semibold">Category</h3>
+            <h3 className="mb-2 font-semibold">Kategori</h3>
             <ul className="space-y-1 font-medium">
               {[
                 {
@@ -227,7 +227,7 @@ const Product = () => {
 
           {/* Departure City */}
           <div>
-            <h3 className="mb-2 font-semibold">Departure City</h3>
+            <h3 className="mb-2 font-semibold">Kota Keberangkatan</h3>
             <div className="space-y-1">
               {availableCities.map((city) => (
                 <div key={city} className="flex items-center gap-2">
@@ -247,7 +247,7 @@ const Product = () => {
 
           {/* Departure Month */}
           <div>
-            <h3 className="mb-2 font-semibold">Departure Month</h3>
+            <h3 className="mb-2 font-semibold">Bulan Keberangkatan</h3>
             <div className="space-y-1">
               {futureMonths.map((m) => (
                 <div key={m.id} className="flex items-center gap-2">
