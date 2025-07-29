@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import logoImage from "../../../assets/logo.png";
 import api from "../../../utils/api";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 import JamaahForm from "./JamaahForm";
 import TotalPrice from "./TotalPrice";
 import { FooterSecond } from "../../../components/common/Footer";

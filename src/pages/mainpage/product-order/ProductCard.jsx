@@ -59,7 +59,7 @@ const ProductCard = ({ productData, roomPrice, showDetail, setShowDetail }) => {
           <img
             src={
               productData?.featured_image
-                ? `http://localhost:5000/${productData.featured_image}`
+                ? `${import.meta.env.VITE_API_URL}/${productData.featured_image}`
                 : "/image.png"
             }
             alt={productData?.name}
