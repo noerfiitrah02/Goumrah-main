@@ -207,11 +207,12 @@ const PackageForm = () => {
         });
       }
 
-      navigate("/travel/produk", {
-        state: {
-          successMessage: `Paket berhasil ${isEditMode ? "diperbarui" : "dibuat"}`,
-        },
-      });
+      if (isEditMode) {
+        toast.success("Paket berhasil diperbarui");
+      } else {
+        toast.success("Paket berhasil ditambahkan");
+      }
+      navigate("/travel/produk");
     } catch (error) {
       console.error("Error submitting package:", error);
       toast.error(error.response?.data?.message || "Terjadi kesalahan");

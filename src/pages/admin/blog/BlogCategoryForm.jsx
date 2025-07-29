@@ -33,7 +33,6 @@ const BlogCategoryForm = () => {
       });
     } catch (error) {
       console.error("Error fetching blog category:", error);
-      toast.error("Gagal memuat data kategori");
       navigate("/admin/kategori-blog");
     } finally {
       setLoading(false);

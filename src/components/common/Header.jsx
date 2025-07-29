@@ -1,6 +1,7 @@
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
+import { MdDashboard } from "react-icons/md";
 import logo from "../../assets/logo.png";
 import { IoBagOutline } from "react-icons/io5";
 import { Burgerbar } from "../ui/Burgerbar";
@@ -35,6 +36,26 @@ export default function Header() {
   };
 
   const isActive = (path) => location.pathname === path;
+
+  // Function to determine dashboard route based on user role
+  const getDashboardRoute = () => {
+    if (!user?.role) return "/dashboard";
+
+    switch (user.role.toLowerCase()) {
+      case "admin":
+        return "/admin/dashboard";
+      case "travel_agent":
+        return "/travel-agent/dashboard";
+      default:
+        return "/dashboard";
+    }
+  };
+
+  // Function to determine if user is admin or travel agent
+  const isAdminOrAgent = () => {
+    if (!user?.role) return false;
+    return ["admin", "travel_agent"].includes(user.role.toLowerCase());
+  };
 
   return (
     <>
@@ -76,30 +97,53 @@ export default function Header() {
 
           {/* Nav Links */}
           <nav className="flex gap-6 text-sm font-medium text-gray-700 max-sm:hidden sm:hidden lg:flex">
-            <Link to="/" className={isActive("/") ? "text-green" : ""}>
+            <Link
+              to="/"
+              className={`transition-colors duration-200 hover:text-green-600 ${
+                isActive("/")
+                  ? "border-b-2 border-green-600 pb-1 font-semibold text-green-600"
+                  : "hover:text-green-600"
+              }`}
+            >
               Beranda
             </Link>
             <Link
               to="/produk"
-              className={isActive("/produk") ? "text-green-600" : ""}
+              className={`transition-colors duration-200 hover:text-green-600 ${
+                isActive("/produk")
+                  ? "border-b-2 border-green-600 pb-1 font-semibold text-green-600"
+                  : "hover:text-green-600"
+              }`}
             >
               Produk
             </Link>
             <Link
               to="/tabungan"
-              className={isActive("/tabungan") ? "text-green-600" : ""}
+              className={`transition-colors duration-200 hover:text-green-600 ${
+                isActive("/tabungan")
+                  ? "border-b-2 border-green-600 pb-1 font-semibold text-green-600"
+                  : "hover:text-green-600"
+              }`}
             >
               Tabungan Haji & Umrah
             </Link>
             <Link
               to="/blog"
-              className={isActive("/blog") ? "text-green-600" : ""}
+              className={`transition-colors duration-200 hover:text-green-600 ${
+                isActive("/blog")
+                  ? "border-b-2 border-green-600 pb-1 font-semibold text-green-600"
+                  : "hover:text-green-600"
+              }`}
             >
               Blog
             </Link>
             <Link
               to="/kontak"
-              className={isActive("/kontak") ? "text-green-600" : ""}
+              className={`transition-colors duration-200 hover:text-green-600 ${
+                isActive("/kontak")
+                  ? "border-b-2 border-green-600 pb-1 font-semibold text-green-600"
+                  : "hover:text-green-600"
+              }`}
             >
               Kontak
             </Link>
@@ -107,20 +151,37 @@ export default function Header() {
 
           {/* CTA + User */}
           <div className="flex items-center gap-1">
-            {/* Cart Icon */}
-            <Link
-              to="/keranjang"
-              className="hidden items-center rounded-full px-2 py-2 sm:flex"
-            >
-              <IoBagOutline size={20} className="text-gray-700" />
-            </Link>
+            {/* Cart/Dashboard Icon - Only show if user is logged in */}
+            {isAuthenticated && (
+              <>
+                {isAdminOrAgent() ? (
+                  /* Dashboard Button for Admin/Travel Agent */
+                  <Link
+                    to={getDashboardRoute()}
+                    className="hidden items-center rounded-full px-2 py-2 text-gray-700 transition-colors duration-200 hover:text-green-600 sm:flex"
+                    title="Dashboard"
+                  >
+                    <MdDashboard size={20} />
+                  </Link>
+                ) : (
+                  /* Cart Icon for Regular Users */
+                  <Link
+                    to="/keranjang"
+                    className="hidden items-center rounded-full px-2 py-2 text-gray-700 transition-colors duration-200 hover:text-green-600 sm:flex"
+                    title="Keranjang"
+                  >
+                    <IoBagOutline size={20} />
+                  </Link>
+                )}
+              </>
+            )}
 
             {/* User Section */}
             {isAuthenticated ? (
               <div className="relative hidden lg:block">
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
-                  className="bg-gradient flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white"
+                  className="bg-gradient flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white transition-opacity duration-200 hover:opacity-90"
                 >
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
                     <span className="text-xs font-bold">
@@ -137,7 +198,24 @@ export default function Header() {
                         {user.name}
                       </p>
                       <p className="text-xs text-gray-500">{user.email}</p>
+                      {user.role && (
+                        <p className="mt-1 text-xs text-blue-600 capitalize">
+                          {user.role.replace("_", " ")}
+                        </p>
+                      )}
                     </div>
+
+                    {/* Dashboard Link in Dropdown for Admin/Travel Agent */}
+                    {isAdminOrAgent() && (
+                      <Link
+                        to={getDashboardRoute()}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600"
+                        onClick={() => setShowDropdown(false)}
+                      >
+                        Dashboard
+                      </Link>
+                    )}
+
                     <Link
                       to="/profil"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600"
@@ -157,7 +235,7 @@ export default function Header() {
             ) : (
               <Link
                 to="/daftar"
-                className="bg-gradient hidden rounded-2xl px-3 py-1 text-sm text-white sm:hidden lg:flex"
+                className="bg-gradient hidden rounded-2xl px-3 py-1 text-sm text-white transition-opacity duration-200 hover:opacity-90 sm:hidden lg:flex"
               >
                 Daftar
               </Link>

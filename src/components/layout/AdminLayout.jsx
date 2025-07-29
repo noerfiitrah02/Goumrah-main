@@ -336,9 +336,13 @@ const AdminLayout = ({ children, title = "Dashboard" }) => {
             }`}
           >
             {sidebarOpen ? (
-              <div className="flex items-center">
+              <button
+                onClick={() => navigate("/")}
+                className="flex items-center focus:outline-none"
+                style={{ cursor: "pointer" }}
+              >
                 <img src={logo} alt="GoUmrah Logo" className="h-10" />
-              </div>
+              </button>
             ) : (
               <p></p>
             )}

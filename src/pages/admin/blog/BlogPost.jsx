@@ -12,6 +12,7 @@ import SearchableSelect from "../../../components/ui/SearchableSelect";
 import ActionButtons from "../../../components/ui/ActionButtons";
 import DataTable from "../../../components/ui/DataTable";
 import Pagination from "../../../components/ui/Pagination";
+import LoadingSpinner from "../../../components/ui/LoadingSpinner";
 
 const BlogPostManagement = () => {
   const [posts, setPosts] = useState([]);
@@ -484,9 +485,7 @@ const BlogPostManagement = () => {
       </div>
       <div className="overflow-hidden rounded-lg bg-white shadow">
         {loading ? (
-          <div className="flex justify-center p-8">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-indigo-500 border-t-transparent"></div>
-          </div>
+          <LoadingSpinner />
         ) : posts.length === 0 ? (
           <div className="p-8 text-center text-gray-500">
             Tidak ada data postingan

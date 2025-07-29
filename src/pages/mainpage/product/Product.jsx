@@ -22,6 +22,8 @@ const Product = () => {
   const [availableAllCategories, setAvailableAllCategories] = useState([]);
   const [availableCategories, setAvailableCategories] = useState([]);
 
+  const $BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const { state } = useLocation();
 
   const currentYear = new Date().getFullYear();
@@ -297,7 +299,7 @@ const Product = () => {
               {recommendedProducts.map((item, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <img
-                    src={`http://localhost:5000/${item.featured_image}`}
+                    src={`${$BASE_URL}/${item.featured_image}`}
                     alt={item.name}
                     className="h-12 w-12 rounded object-cover"
                   />

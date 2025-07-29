@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Eye, EyeOff, Check, X } from "lucide-react";
 import { toast } from "react-toastify";
+import api from "../../../utils/api";
 
 // Komponen indikator password yang disederhanakan
 const PasswordStrengthIndicator = ({ password }) => {
@@ -81,10 +81,7 @@ const ForgotPasswordPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password",
-        { email },
-      );
+      const response = await api.post("/auth/forgot-password", { email });
 
       setStep(2);
       toast.success("Kode OTP telah dikirim ke email Anda");
@@ -121,14 +118,11 @@ const ForgotPasswordPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/reset-password",
-        {
-          email,
-          otp,
-          newPassword,
-        },
-      );
+      const response = await api.post("/auth/reset-password", {
+        email,
+        otp,
+        newPassword,
+      });
 
       toast.success(response.data.message);
       navigate("/login");

@@ -184,8 +184,10 @@ const TravelAgentDashboard = () => {
 
             <StatCard
               title="Transaksi Bulan Ini"
-              value={stats.ordersThisMonth}
-              subText={FormatCurrency(stats.revenueThisMonth)}
+              value={stats.ordersThisMonth ? stats.ordersThisMonth : 0}
+              subText={FormatCurrency(
+                stats.revenueThisMonth ? stats.revenueThisMonth : 0,
+              )}
               icon={FaCalendarAlt}
               iconBgColor="bg-orange-100"
               iconColor="text-orange-600"
@@ -193,7 +195,7 @@ const TravelAgentDashboard = () => {
 
             <StatCard
               title="Tingkat Konversi"
-              value={`${stats.conversionRate.toFixed(2)}%`}
+              value={stats.conversionRate ? `${stats.conversionRate}%` : 0}
               subText="Pesanan yang berhasil dibayar"
               icon={FaCheckCircle}
               iconBgColor="bg-green-100"

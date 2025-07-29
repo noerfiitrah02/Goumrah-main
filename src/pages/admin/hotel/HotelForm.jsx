@@ -74,14 +74,24 @@ const HotelForm = () => {
     e.preventDefault();
     setSubmitting(true);
 
+    const dataToSend = {
+      ...formData,
+      stars: formData.stars ? parseInt(formData.stars) : null,
+      distance_to_haram: formData.distance_to_haram
+        ? parseFloat(formData.distance_to_haram)
+        : null,
+      distance_to_nabawi: formData.distance_to_nabawi
+        ? parseFloat(formData.distance_to_nabawi)
+        : null,
+    };
+
     try {
       if (isEditMode) {
-        await api.put(`/hotels/${id}`, formData);
+        await api.put(`/hotels/${id}`, dataToSend);
       } else {
-        await api.post("/hotels", formData);
+        await api.post("/hotels", dataToSend);
       }
 
-      // Hanya navigate dengan state, tanpa toast di sini
       navigate("/admin/hotel", {
         state: {
           successMessage: `Hotel berhasil ${isEditMode ? "diperbarui" : "dibuat"}`,

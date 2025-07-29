@@ -2,10 +2,10 @@ import { FaX, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Check, X } from "lucide-react";
 import logoImage from "../../../assets/logo.png";
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ConfirmationModal from "../../../components/common/ConfirmationModal";
+import api from "../../../utils/api";
 
 const RegistrationTravel = () => {
   const [preview, setPreview] = useState(null);
@@ -105,15 +105,11 @@ const RegistrationTravel = () => {
         data.append("logo", logoFile);
       }
 
-      const response = await axios.post(
-        "http://localhost:5000/api/travel/register",
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      const response = await api.post("/travel/register", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
-      );
+      });
 
       if (response.data.success) {
         toast.success(response.data.message);

@@ -64,14 +64,6 @@ export const LayoutHome = ({ children }) => {
                 </p>
               </div>
             </div>
-            <div className="flex basis-full max-sm:mt-3 sm:mt-3 md:mt-4 lg:mt-5">
-              <Link
-                to={"/produk"}
-                className="bg-primary rounded-full px-5 py-2"
-              >
-                <p className="font-semibold text-white">Lihat Produk</p>
-              </Link>
-            </div>
           </div>
         </div>
       </div>

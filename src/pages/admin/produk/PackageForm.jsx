@@ -47,11 +47,6 @@ const PackageForm = () => {
     }).format(price);
   };
 
-  const parseIDR = (formattedPrice) => {
-    if (!formattedPrice) return "";
-    return formattedPrice.replace(/[^\d]/g, "");
-  };
-
   useEffect(() => {
     fetchCategories();
     if (isEditMode) {

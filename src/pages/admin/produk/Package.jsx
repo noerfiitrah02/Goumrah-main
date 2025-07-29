@@ -4,12 +4,11 @@ import { toast } from "react-toastify";
 import AdminLayout from "../../../components/layout/AdminLayout";
 import ConfirmationModal from "../../../components/common/ConfirmationModal";
 import SearchBar from "../../../components/ui/SearchBar";
-import HeaderSection from "../../../components/ui/HeaderSection";
 import ActionButtons from "../../../components/ui/ActionButtons";
 import DataTable from "../../../components/ui/DataTable";
 import Pagination from "../../../components/ui/Pagination";
 import api from "../../../utils/api";
-import { FaBox, FaStar } from "react-icons/fa";
+import { FaBox, FaStar, FaPlus } from "react-icons/fa";
 import LoadingSpinner from "../../../components/ui/LoadingSpinner";
 
 const PackageManagement = () => {
@@ -278,12 +277,25 @@ const PackageManagement = () => {
 
   return (
     <AdminLayout title="Manajemen Paket">
-      <HeaderSection
-        title="Kelola Produk"
-        description="Kelola paket perjalanan yang tersedia"
-        icon={<FaBox className="text-white" />}
-      />
-
+      <div className="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-green-500 to-green-600 shadow-sm">
+            <FaBox className="text-white" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800">Kelola Produk</h2>
+            <p className="text-sm text-gray-500">
+              Kelola paket perjalanan yang tersedia
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={() => navigate("/admin/produk/create")}
+          className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+        >
+          <FaPlus /> Tambah Paket
+        </button>
+      </div>
       <div
         className="mb-6 rounded-lg bg-white p-4 shadow"
         ref={tableContainerRef}

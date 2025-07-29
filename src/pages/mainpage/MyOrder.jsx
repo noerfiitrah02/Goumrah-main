@@ -68,7 +68,7 @@ const MyOrders = () => {
 
   const handleCancel = async (orderId) => {
     try {
-      await api.patch(`http://localhost:5000/api/orders/${orderId}`, {
+      await api.patch(`/orders/${orderId}`, {
         order_status: "canceled",
       });
       fetchOrders(); // refresh
